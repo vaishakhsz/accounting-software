@@ -1,12 +1,4 @@
-#!/usr/bin/env python3
-"""
-Professional Double-Entry Accounting System
-Author: Your Name
-License: MIT
-Description: A complete accounting system with Chart of Accounts, 
-             Journal Entries, Trial Balance, Income Statement, 
-             and Balance Sheet.
-"""
+
 
 import json
 import os
