@@ -1,8 +1,3 @@
-#!/usr/bin/env python3
-"""
-Professional Double-Entry Accounting System
-"""
-
 import json
 import os
 import sys
@@ -443,6 +438,7 @@ class AccountingSystem:
 # ============================================
 
 def main():
+    print("\n🚀 Starting Accounting System...")
     system = AccountingSystem()
     
     while True:
@@ -473,11 +469,13 @@ def main():
             code = input("Account Code (e.g., 1090): ").strip()
             if not code:
                 print("❌ Account code is required!")
+                input("\nPress Enter to continue...")
                 continue
             
             name = input("Account Name: ").strip()
             if not name:
                 print("❌ Account name is required!")
+                input("\nPress Enter to continue...")
                 continue
             
             print(f"\nAccount Types: {', '.join(ACCOUNT_TYPES.values())}")
@@ -498,6 +496,7 @@ def main():
             description = input("Description: ").strip()
             if not description:
                 print("❌ Description is required!")
+                input("\nPress Enter to continue...")
                 continue
             
             lines = []
@@ -509,14 +508,17 @@ def main():
                 
                 if account_code not in system.accounts:
                     print(f"❌ Account {account_code} not found!")
-                    print("Available accounts:", ', '.join(list(system.accounts.keys())[:10]) + "...")
+                    print("Tip: Use option 1 to see all accounts")
                     continue
                 
                 try:
-                    debit = Decimal(input("Debit amount (0 if none): ").strip() or '0')
-                    credit = Decimal(input("Credit amount (0 if none): ").strip() or '0')
+                    debit_input = input("Debit amount (0 if none): ").strip()
+                    debit = Decimal(debit_input) if debit_input else Decimal('0')
+                    
+                    credit_input = input("Credit amount (0 if none): ").strip()
+                    credit = Decimal(credit_input) if credit_input else Decimal('0')
                 except InvalidOperation:
-                    print("❌ Invalid amount!")
+                    print("❌ Invalid amount! Please enter a number.")
                     continue
                 
                 if debit > 0 and credit > 0:
@@ -564,6 +566,7 @@ def main():
                 print(f"Current Balance: ${account.balance:,.2f}")
             else:
                 print("❌ Account not found!")
+                print("Tip: Use option 1 to see all accounts")
         
         elif choice == "9":
             print("\n⚠️  WARNING: This will delete ALL data!")
